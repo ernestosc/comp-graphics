@@ -1,0 +1,155 @@
+"Shader Fun" - Report
+
+*************** Compiling Instructions ******************
+
+	Please use Apache Ant's 'ant' command on your console
+	while in the base directory.
+
+*********** Control Flow / User Interface ***************
+
+	The program assigns a rendering state per shader.
+	It begins by rendering the Gouraud shader.
+
+	The user may maneuver about the scene by using the
+	keys specified below to move/rotate the camera.
+
+	Shader States:
+	- Press 1 : Gouraud Light Shading
+	- Press 2 : Blinn-Phong Light Shading (BP)
+	- Press 3 : Checkboard Texture w/ BP
+	- Press 4 : Toon Shading
+	- Press 5 : Dot Texture w/ BP
+	- Press 6 : Brick Texture w/ BP
+
+	User Keys/Controls:
+
+	- Press ESC     : Close Window & End Program
+	- Press P       : Take Snapshot
+
+	Camera Controls = <CamKey> Set
+	- Press UP      : Move Camera Forward
+	- Press DOWN    : Move Camera Backward
+	- Press LEFT    : Move Camera Left
+	- Press RIGHT   : Move Camera Right
+	- Press COMMA   : Move Camera Down
+	- Press PERIOD  : Move Camera Up
+
+	- Hold MINUS + Press <CamKey>  : Move Camera Slower
+	- Hold EQUALS + Press <CamKey> : Move Camera Faster
+
+	- Click Mouse LEFT_BUTTON + Move Mouse: Rotate Camera
+
+	Move around the scene to see the lighting effects on 
+	various parts of the rendered object model.
+
+	I have included 4 light sources, each of a different
+	coloring to make the scene more interesting.
+
+*************** Project Description *********************
+
+	I have implemented the vertex and fragment processing
+	portions for numerous shading effects. 
+
+	For the resources used in making this program, please
+	see the "Resource Used" section below.
+
+	I changed the starter code from declaring string
+	literals for shader code to simply reading these
+	strings from files through readFile().
+
+	Another change came with applying the camera immediately
+	after it's created. Only after applying the camera first
+	is lighting enabled for the scene, so as to have the
+	lights remain stationary in camera space, which is the 
+	space things are rendered in given that Camera.apply()
+	is called on every rendering loop. As such, lighting
+	positions are necessarily reset with setLights() on 
+	every loop after reapplying the camera.
+
+	The mathematics for Gouraud and Blinn-Phong adhere to
+	the formulae shown in the Wikipedia articles pointed
+	to by the assignment instructions.
+
+	I implement these lighting models for multi-light
+	functionality. Indeed, I have placed four light
+	sources in the program's scene. In particular, I
+	make the choice to average the ambient attributes
+	of all light sources as the coefficient to the 
+	material ambient attribute in the Phong reflection
+	model formula.
+
+	The Blinn-Phong shading model makes use of a halfway
+	vector between incoming light direction and viewing
+	direction to modify a vertex's specular attribute, as
+	opposed to Gouraud's use of the reflected light's
+	direction. 
+
+	In this way, Blinn-Phong offers a crisper specular spot
+	on the object surface that remains approximately circular
+	no matter the viewing angle. The spot smudges at a 
+	peripheral angle in the Gouraud model.
+
+	Last, some shaders manipulate the RGBA color values of
+	the object materials to enhance their particular 
+	shade texture.
+
+****************** Bonus Features ***********************
+
+	Beyond the required implementation of Gouraud, and a
+	choice of 2 (I chose Blinn-Phong and the Checkerboard
+	texture options), I implemented one more shading style
+	and two more shader-made texturing effects:
+
+		Toon Shading
+		Dots Texture
+		Brick Texture
+
+	It's worth noting that implementing the checkerboard
+	texture through the shader and combining it with the
+	Blinn-Phong model equates to another of the options
+	listed in the assignment:
+
+		Texture-Modulated Smooth Shader
+
+	For details on the implementation of bonus effects,
+	please refer to the comments in the respective 
+	.vert and .frag shader files.
+
+	Please note, I have opted to maintain a black background
+	on the displayed scene to keep the focus of the user on
+	the cool shading features implemented.
+
+****************** Resources Used ***********************
+
+	In learning how to code GLSL shaders and in learning
+	the various GLSL functions/data types used in this
+	program, I relied on:
+
+		- Lighthouse 3D Tutorial:
+
+		http://zach.in.tu-clausthal.de/teaching/cg_literatur/glsl_tutorial/
+
+		- Official GLSL 1.2 Specification:
+
+		https://www.opengl.org/registry/doc/GLSLangSpec.Full.1.20.8.pdf
+
+	The toon shading model used here is in line with the Toon Shader
+	concept from the Lighthouse 3D tutorial. I have chosen my own color
+	parameters and made calculations specific to my scene in computing
+	the cosine, however. These modifications include taking into account
+	the multiple lights accordingly for each vertex.
+
+	As mentioned in the "Project Description" above, the mathematics
+	formulae for Gouraud and Blinn-Phong on Wikipedia were the ones
+	implemented in my shaders.
+
+	For the brick texture shader, the following chapter from Rost's 
+	OpenGL Shading Language 2e was very helpful in conveying the goals 
+	of the fragment portion. I use only the concepts in the chapter.
+
+		http://www.aw-bc.com/samplechapter/0321197895.pdf
+
+	Last, Stefan Gustavson's "Procedural Textures in GLSL" provided a
+	detailed explanation on the subject of procedural textures. 
+
+		http://webstaff.itn.liu.se/~stegu/TNM061-2015/proceduraltextures.pdf

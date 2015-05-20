@@ -1,0 +1,89 @@
+<project name='Animatics' basedir="." default="run">
+    <property name="author" value="Ernesto Sandoval" />
+
+    <property name="build.dir" value="${basedir}/build" />
+    <property name="build.classdir" value="${build.dir}/classes" />
+    <property name="build.distdir" value="${build.dir}/dist" />
+
+    <property name="src.dir" value="${basedir}/src" />
+
+    <!-- EXECUTION TAGS -->
+    <property name="debug" value="off" />
+    <property name="verbose" value="off" />
+
+    <path id="class.path">
+        <fileset dir="${basedir}/lwjgl-2.9.3/jar">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement location="ejml-v0.26-libs/EJML-core-0.26.jar"/>
+        <pathelement location="slick-util.jar"/>
+    </path>
+
+    <!-- ========================================================================= -->   
+    <!--                                    Init                                   -->   
+    <!-- ========================================================================= -->   
+    <target name="init" description="Initialize resources.">                             
+       <mkdir dir="${build.classdir}"/>                                                   
+    </target> 
+
+    <!-- first create our properties -->
+    <condition property="isMac">
+        <os family="mac" />
+    </condition>
+
+    <condition property="isWindows">
+        <os family="windows" />
+    </condition>
+
+    <condition property="isUnix">
+        <and>
+            <os family="unix" />
+            <not>
+                <os family="mac" />
+            </not>
+        </and>
+    </condition>
+    
+    <!-- ========================================================================= -->   
+    <!--                               Build Scheduler                             -->   
+    <!-- ========================================================================= -->   
+    <target name="build.pa2" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.classdir}" debug="${debug}"
+            optimize="on" verbose="${verbose}" includeantruntime="false">
+            <classpath refid="class.path" />
+        </javac>
+    </target>
+
+    <target name="run_win" if="isWindows">
+        <java classname="PA2" fork="true">
+            <sysproperty key="java.library.path" path="lwjgl-2.9.3/native/windows" />
+            <classpath>
+                <path refid="class.path"/>
+                <pathelement path="${build.classdir}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="run_unix" if="isUnix">
+        <java classname="PA2" fork="true">
+            <sysproperty key="java.library.path" path="lwjgl-2.9.3/native/linux" />
+            <classpath>
+                <path refid="class.path"/>
+                <pathelement path="${build.classdir}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="run_mac" if="isMac">
+        <java classname="PA2" fork="true">
+            <sysproperty key="java.library.path" path="lwjgl-2.9.3/native/macosx" />
+            <classpath>
+                <path refid="class.path"/>
+                <pathelement path="${build.classdir}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="run" depends="build.pa2, run_win, run_unix, run_mac"/>
+
+</project>

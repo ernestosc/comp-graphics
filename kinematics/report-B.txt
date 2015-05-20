@@ -1,0 +1,115 @@
+Part B - Inverse Kinematics
+
+"Animatics" Report
+
+*************** Compiling Instructions ******************
+
+	Please use Apache Ant's 'ant' command on your console
+	while in the base directory.
+
+*************** Project Description *********************
+
+	For Part B, I have implemented inverse kinematics for
+	the following character models:
+
+		-  7-Link Serial Manipulator
+		- Customized Binary Tree Web
+
+	These models comprise, respectively:
+		- One chain of sequenced links.
+		- A multi-branch model showcasing the correct
+		  implementation of damping least squares with
+		  ancestral tracing.
+
+	I have made a recursive rendering method that performs
+	the appropriate rotations, translations, and scales for
+	the various joint types.
+
+	In addition, I have allowed for the user to specify which
+	joint to manipulate through a mouse picking interface.
+
+	Part of this mouse-controlled target-picking involves the
+	implementation of a screen-to-world coordinates transformation.
+
+	To compute the Jacobian for Damping Least Squares, I use
+	derivative formulas given in a slide presentation cited 
+	below under Resources.
+
+	Simply click on the joint you desire to move.
+
+	See the controls below for more details.
+
+*********** Control Flow / User Interface ***************
+
+	The program has two modes:
+
+		- Forward Kinematics
+		- Inverse Kinematics
+
+	For Part B, the program begins running in IK Mode.
+	Please maintain this mode while switching between models.
+
+	User Keys/Controls:
+
+	- Press TAB     : Switch between Forward and Inverse Kinematics
+	- Press UP      : Move Camera Forward
+	- Press DOWN    : Move Camera Backward
+	- Press LEFT    : Move Camera Left
+	- Press RIGHT   : Move Camera Right
+	- Press SPACE   : Move Camera Up
+	- Press R_SHIFT : Move Camera Down
+	- Press PERIOD  : Move Camera Faster
+	- Press COMMA   : Move Camera Slower
+
+	- Press ESC		: Close Window and Program
+	- Press P 		: Take Snapshot
+
+	If in Forward Kinematics Mode
+	- Press 1  :  Render  3-Link Manipulator
+	- Press 2  :  Render 10-Link Manipulator
+	- Press 3  :  Render Binary Tree Web
+
+	If in Inverse Kinematics Mode
+	- Press 1  :  Render 7-Link Manipulator
+	- Press 2  :  Render Binary Tree Web
+
+	- Click Left Mouse Button : Select A Joint/Link To Manipulate
+	  ** Once A Joint Is Selected:
+	  		You may click again anywhere to move the selected
+	  		end effector to that point.
+
+	  *** NOTE: 
+	  	In my implementation, the end effector is the "tip" of the
+	  	selected link. So when a sphere is highlighted as the current
+	  	joint, it is the tip of the link that grows out from the sphere
+	  	that should reach the target position.
+
+	Choose a joint and click around to have it go different places.
+
+	Be surprised by the secrets revealed as you move more joints in
+	the binary tree model!
+
+******* Extra Features *******
+
+	Betond the required features, I have implemented:
+		Lighting and Material Colors
+		Textured Environment
+		World Coordinate Axes
+		Color Highlighting The Controlled Joint
+
+******* Resources Used *******
+
+I followed this tutorial for implementing Mouse Picking: 
+
+	http://content.gpwiki.org/index.php/OpenGL:Tutorials:Picking
+
+My implementation of Damped Least Squares comes from the source
+provided in the course site:
+
+	Buss, Samuel R., "Introduction to Inverse Kinematics 
+					  with Jacobian Transpose, Pseudoinverse 
+					  and Damped Least Squares methods", UCSD, 2009.
+
+My implementation of the Jacobian comes from the slides found at:
+
+	http://www-inst.eecs.berkeley.edu/~cs184/fa05/lectures/lecture-19.pdf

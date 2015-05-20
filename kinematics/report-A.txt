@@ -1,0 +1,100 @@
+Part A - Forward Kinematics
+
+"Animatics" Report
+
+*************** Compiling Instructions ******************
+
+	Please use Apache Ant's 'ant' command on your console
+	while in the base directory.
+
+*************** Project Description *********************
+
+	For Part A, I have implemented forward kinematics for
+	the following character models:
+
+		-  3-Link Serial Manipulator
+		- 10-Link Serial Manipulator
+		- Customized Binary Tree Web
+
+	Each of these models includes 3 kinds of joints:
+
+		- Revolute Joints 			: 1 Angle  DOF
+		- Prismatic Joints 			: 1 Length DOF
+		- Spherical (Ball) Joints   : 2 Angles DOF
+
+	I have made a recursive rendering method that performs
+	the apprpriate rotations, translations, and scales for
+	the various joint types.
+
+	In addition, I have allowed for the user to specify which
+	joint to manipulate through a mouse picking interface.
+
+	Simply click on the joint you desire to move.
+
+	See the controls below for more details.
+
+*********** Control Flow / User Interface ***************
+
+	The program has two modes:
+
+		- Forward Kinematics
+		- Inverse Kinematics
+
+	For Part A, the program begins running in FK Mode.
+	Please maintain this mode while switching between models.
+
+	User Keys/Controls:
+
+	- Press TAB     : Switch between Forward and Inverse Kinematics
+	- Press UP      : Move Camera Forward
+	- Press DOWN    : Move Camera Backward
+	- Press LEFT    : Move Camera Left
+	- Press RIGHT   : Move Camera Right
+	- Press SPACE   : Move Camera Up
+	- Press R_SHIFT : Move Camera Down
+	- Press PERIOD  : Move Camera Faster
+	- Press COMMA   : Move Camera Slower
+
+	- Press ESC		: Close Window and Program
+	- Press P 		: Take Snapshot
+
+	If in Forward Kinematics Mode
+	- Press 1  :  Render  3-Link Manipulator
+	- Press 2  :  Render 10-Link Manipulator
+	- Press 3  :  Render Binary Tree Web
+
+	If in Inverse Kinematics Mode
+	- Press 1  :  Render 7-Link Manipulator
+	- Press 2  :  Render Binary Tree Web
+
+	- Click Left Mouse Button : Select A Joint/Link To Manipulate
+
+	- Press EQUALS  : Increase: 	Angle      (Revolute)
+							   	   Length 	   (Prismatic)
+							   Azimuthal Angle (Spherical)
+	- Press MINUS	: Decreases
+
+	- Press 0	: Increase Polar Angle (Spherical Joint Only)
+	- Press 9	: Decrease Polar Angle (Spherical Joint Only)
+
+	Can you guess what kind of joint each joint in a model is?
+	Click around and discover!
+
+******* Extra Features *******
+
+	Betond the required features, I have implemented:
+		Prismatic Joints
+		Spherical Joints
+		Lighting and Material Colors
+		Textured Environment
+		World Coordinate Axes
+		An Extra Character Model
+		Color Highlighting Chosen Joint
+
+******* Resources Used *******
+
+I followed this tutorial for implementing Mouse Picking: 
+
+	http://content.gpwiki.org/index.php/OpenGL:Tutorials:Picking
+
+
