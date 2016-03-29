@@ -38,7 +38,7 @@ The projects presented here include:
  - Monte Carlo Ray Tracing 
 
  	Presents the resulting images of a Monte Carlo ray
-	tracing code base written mostly Prof. Zheng.
+	tracing code base written mostly by Prof. Zheng.
 
 	My contribution to the code base comprised ray-to-
 	sphere intersection detection, Phong shading, and
