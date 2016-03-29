@@ -49,5 +49,5 @@ The projects presented here include:
 	tracing were implemented.
 
  - See http://github.com/ltolosa/A-Maze-3D for a
-   collaborative maze-solving game made for also
-   for this course.
+   collaborative maze-solving game also made for
+   this course.
